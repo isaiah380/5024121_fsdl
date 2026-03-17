@@ -65,6 +65,31 @@ if (form) {
 }
 
 // HOME PAGE LOGIC
+// PRODUCT DATA (ARRAY with images)
+const products = [
+    {
+        name: "Stylish T-Shirt",
+        price: "$20",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
+    },
+    {
+        name: "Denim Jacket",
+        price: "$50",
+        image: "https://images.unsplash.com/photo-1516826957135-700dedea698c"
+    },
+    {
+        name: "Casual Shoes",
+        price: "$35",
+        image: "https://images.unsplash.com/photo-1528701800489-20be3c5c01b3"
+    },
+    {
+        name: "Jeans",
+        price: "$40",
+        image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246"
+    }
+];
+
+// HOME PAGE LOGIC
 if (window.location.pathname.includes("home.html")) {
     try {
         let email = localStorage.getItem("userEmail");
@@ -74,21 +99,26 @@ if (window.location.pathname.includes("home.html")) {
             throw "Unauthorized access! Please login first.";
         }
 
-        // STRING manipulation
         document.getElementById("welcomeMsg").innerText =
-            "Hello " + email.toLowerCase();
+            "Hi, " + email.toLowerCase();
 
-        // ARRAY display
-        let list = document.getElementById("productList");
+        let container = document.getElementById("productContainer");
+
         products.forEach(product => {
-            let li = document.createElement("li");
-            li.innerText = product;
-            list.appendChild(li);
+            let card = document.createElement("div");
+            card.classList.add("product-card");
+
+            card.innerHTML = `
+                <img src="${product.image}">
+                <h3>${product.name}</h3>
+                <p>${product.price}</p>
+            `;
+
+            container.appendChild(card);
         });
 
-        // DATE display
         document.getElementById("loginTime").innerText =
-            "Login Time: " + new Date(loginTime).toLocaleString();
+            "Last Login: " + new Date(loginTime).toLocaleString();
 
     } catch (error) {
         alert(error);
