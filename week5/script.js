@@ -66,7 +66,7 @@ if (form) {
 
 // HOME PAGE LOGIC
 // PRODUCT DATA (ARRAY with images)
-const products = [
+const product = [
     {
         name: "Stylish T-Shirt",
         price: "$20",
